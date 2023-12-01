@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <title>To do List</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: #F2E2D2;
+        }
+        label,p,td,tr,input[type=text],input[type=submit]{
+            font-family: 'Work Sans', sans-serif;
+        }
+        .whole{
+            background-color: #9FB7B9;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+        }
+        .container{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 40% 60%;
+        }
+        .w-40{
+            background-color: #BCC1BA;
+            margin: 10px;
+            border-radius: 10px;
+            max-height: 170px;
+        }
+        .w-60{
+            margin-left: 10px;
+        }
+        .title{
+            text-align: center;
+            font-family: 'Work Sans', sans-serif;
+        }
+        .form-add{
+            width: 85%;
+            margin-left: auto;
+            margin-right: auto;
+            margin: 20px;
+        }
+        input[type=text]{
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 5px;
+            border: none;
+        }
+        .submit-task{
+            text-align: center;
+        }
+        .addTask-btn{
+            width: 40%;
+            background-color: #68A526;
+            padding: 12px 6px;
+            border: none;
+            color: white;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .ul-tasks{
+            width: 85%;
+        }
+        .li-task{
+            padding: 1px 6px;
+            border-bottom: 2px solid #F2E2D2;
+        }
+        .listTask-btn{
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: none;
+            color: white;
+            border-radius: 5px;   
+            cursor: pointer;     
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title"><b>To-do List App</b></h1>
+    <div class="whole">
+        <div class="container">
+            <div class="w-40">
+                <div class="form-add">
+                    <label for="tast-name" style="text-align: left;">Add Task</label><br>
+                    <input type="text" name="" placeholder="Add Task here..." id="task-name"><br>
+                    <br>
+                    <!-- <label for="assigned-to">Assigned</label><br>
+                    <input type="text" name="" placeholder="Assigned Person..." id="assigned-to"><br> -->
+                    <br>
+                    <div class="submit-task">
+                        <input class="addTask-btn" type="submit" value="Add Task">
+                    </div>
+                </div>
+            </div>
+            <div class="w-60">
+                <div class="task-table">
+                    <ul class="ul-tasks">
+                        <li class="li-task">
+                            <p style="padding-right: 10px;">
+                                <span style="margin-right: 220px;">Clean the room</span>
+                                <span>
+                                    <input class="listTask-btn" style="background-color: orange;" type="submit" value="Priority">
+                                    <input class="listTask-btn" style="background-color: #880808;" type="submit" value="Delete">
+                                </span>
+                            </p>
+                        </li>
+                        <li class="li-task">
+                            <p style="padding-right: 10px;">
+                                <span style="margin-right: 220px;">Clean the room</span>
+                                <span>
+                                    <input class="listTask-btn" style="background-color: orange;" type="submit" value="Priority">
+                                    <input class="listTask-btn" style="background-color: #880808;" type="submit" value="Delete">
+                                </span>
+                            </p>
+                        </li>
+                        <li class="li-task">
+                            <p style="padding-right: 10px;">
+                                <span style="margin-right: 220px;">Clean the room</span>
+                                <span>
+                                    <input class="listTask-btn" style="background-color: orange;" type="submit" value="Priority">
+                                    <input class="listTask-btn" style="background-color: #880808;" type="submit" value="Delete">
+                                </span>
+                            </p>
+                        </li>
+                        <li class="li-task">
+                            <p style="padding-right: 10px;">
+                                <span style="margin-right: 220px;">Clean the room</span>
+                                <span>
+                                    <input class="listTask-btn" style="background-color: orange;" type="submit" value="Priority">
+                                    <input class="listTask-btn" style="background-color: #880808;" type="submit" value="Delete">
+                                </span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
