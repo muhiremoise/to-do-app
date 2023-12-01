@@ -13,7 +13,7 @@
             margin: 0;
             background-color: #F2E2D2;
         }
-        label,p,td,tr,input[type=text],input[type=submit]{
+        label,p,td,tr,input[type=text],button,span{
             font-family: 'Work Sans', sans-serif;
         }
         .whole{
@@ -72,16 +72,24 @@
             width: 85%;
         }
         .li-task{
-            padding: 1px 6px;
+            padding: 8px 6px;
             border-bottom: 2px solid #F2E2D2;
         }
-        .listTask-btn{
+        .delete{
             margin-left: 10px;
             padding: 5px 10px;
             border: none;
             color: white;
             border-radius: 5px;   
             cursor: pointer;     
+        }
+        .myStyle{
+            font-weight: bold;
+            font-size: large;
+            color: goldenrod;
+        }
+        #taskname{
+            padding: 10px 5px;
         }
     </style>
 </head>
@@ -90,61 +98,53 @@
     <div class="whole">
         <div class="container">
             <div class="w-40">
-                <div class="form-add">
-                    <label for="tast-name" style="text-align: left;">Add Task</label><br>
-                    <input type="text" name="" placeholder="Add Task here..." id="task-name"><br>
+                <div class="form-add" id="newtask">
+                    <label for="tast-name" style="text-align: left;" id="taskInput">Add Task</label><br>
+                    <input type="text" name="" placeholder="Add Task here..." id="task-name" id="taskInput"><br>
                     <br>
-                    <!-- <label for="assigned-to">Assigned</label><br>
-                    <input type="text" name="" placeholder="Assigned Person..." id="assigned-to"><br> -->
                     <br>
                     <div class="submit-task">
-                        <input class="addTask-btn" type="submit" value="Add Task">
+                        <button class="addTask-btn" id="push">Add</button>
                     </div>
                 </div>
             </div>
             <div class="w-60">
                 <div class="task-table">
-                    <ul class="ul-tasks">
-                        <li class="li-task">
-                            <p style="padding-right: 10px;">
-                                <span style="margin-right: 220px;">Clean the room</span>
-                                <span>
-                                    <input class="listTask-btn" style="background-color: orange;" type="submit" value="Priority">
-                                    <input class="listTask-btn" style="background-color: #880808;" type="submit" value="Delete">
-                                </span>
-                            </p>
-                        </li>
-                        <li class="li-task">
-                            <p style="padding-right: 10px;">
-                                <span style="margin-right: 220px;">Clean the room</span>
-                                <span>
-                                    <input class="listTask-btn" style="background-color: orange;" type="submit" value="Priority">
-                                    <input class="listTask-btn" style="background-color: #880808;" type="submit" value="Delete">
-                                </span>
-                            </p>
-                        </li>
-                        <li class="li-task">
-                            <p style="padding-right: 10px;">
-                                <span style="margin-right: 220px;">Clean the room</span>
-                                <span>
-                                    <input class="listTask-btn" style="background-color: orange;" type="submit" value="Priority">
-                                    <input class="listTask-btn" style="background-color: #880808;" type="submit" value="Delete">
-                                </span>
-                            </p>
-                        </li>
-                        <li class="li-task">
-                            <p style="padding-right: 10px;">
-                                <span style="margin-right: 220px;">Clean the room</span>
-                                <span>
-                                    <input class="listTask-btn" style="background-color: orange;" type="submit" value="Priority">
-                                    <input class="listTask-btn" style="background-color: #880808;" type="submit" value="Delete">
-                                </span>
-                            </p>
-                        </li>
+                    <ul class="ul-tasks" id="taskList">
+                        
                     </ul>
                 </div>
             </div>
-        </div>
     </div>
+    <script>
+       document.querySelector('#push').onclick = 
+       function (){
+        newTaskItem = document.querySelector('#newtask input');
+        taskList = document.querySelector('#taskList')
+        if(newTaskItem.value.length == 0){
+            alert("Please Enter a task");
+        }
+        else{
+            taskList.innerHTML
+            += `<li class="li-task"><span id="taskname" style="margin-right: 220px;">${newTaskItem.value}</span><button class="delete" style="background-color: #880808; text-align:right;">Delete</button></li>`;
+            
+            var current_tasks = document.querySelectorAll('.delete');
+            for (var i = 0; i < current_tasks.length; i++) {
+                current_tasks[i].onclick = function(){
+                    this.parentNode.remove();
+                }
+                
+            }
+            var tasks = document.querySelectorAll('#taskname');
+            for (var i = 0; i < tasks.length; i++) {
+                tasks[i].onclick = function(){
+                    this.classList.toggle('myStyle');
+                }
+                
+            }
+            newTaskItem.value = "";
+        }
+       }
+    </script>    
 </body>
 </html>
