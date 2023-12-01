@@ -117,34 +117,58 @@
             </div>
     </div>
     <script>
-       document.querySelector('#push').onclick = 
-       function (){
-        newTaskItem = document.querySelector('#newtask input');
-        taskList = document.querySelector('#taskList')
-        if(newTaskItem.value.length == 0){
-            alert("Please Enter a task");
-        }
-        else{
-            taskList.innerHTML
-            += `<li class="li-task"><span id="taskname" style="margin-right: 220px;">${newTaskItem.value}</span><button class="delete" style="background-color: #880808; text-align:right;">Delete</button></li>`;
-            
-            var current_tasks = document.querySelectorAll('.delete');
-            for (var i = 0; i < current_tasks.length; i++) {
-                current_tasks[i].onclick = function(){
-                    this.parentNode.remove();
+        document.addEventListener("DOMContentLoaded", function () {
+            loadTasks();
+
+            document.querySelector('#push').onclick = function () {
+                newTaskItem = document.querySelector('#newtask input');
+                taskList = document.querySelector('#taskList');
+                if (newTaskItem.value.length == 0) {
+                    alert("Please Enter a task");
+                } else {
+                    taskList.insertAdjacentHTML('afterbegin', `<li class="li-task"><span id="taskname" style="margin-right: 220px;">${newTaskItem.value}</span><button class="delete" style="background-color: #880808; text-align:right;">Delete</button></li>`);
+                    saveTasks();
+
+                    var current_tasks = document.querySelectorAll('.delete');
+                    for (var i = 0; i < current_tasks.length; i++) {
+                        current_tasks[i].onclick = function () {
+                            this.parentNode.remove();
+                            saveTasks();
+                        };
+                    }
+
+                    var tasks = document.querySelectorAll('#taskname');
+                    for (var i = 0; i < tasks.length; i++) {
+                        tasks[i].onclick = function () {
+                            this.classList.toggle('myStyle');
+                        };
+                    }
+
+                    newTaskItem.value = "";
                 }
-                
             }
-            var tasks = document.querySelectorAll('#taskname');
-            for (var i = 0; i < tasks.length; i++) {
-                tasks[i].onclick = function(){
-                    this.classList.toggle('myStyle');
+
+            function saveTasks() {
+                var tasks = [];
+                var taskElements = document.querySelectorAll('.li-task span');
+                taskElements.forEach(function (taskElement) {
+                    tasks.push(taskElement.textContent);
+                });
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+
+            function loadTasks() {
+                var storedTasks = localStorage.getItem('tasks');
+                if (storedTasks) {
+                    var tasks = JSON.parse(storedTasks);
+                    taskList = document.querySelector('#taskList');
+                    tasks.forEach(function (task) {
+                        taskList.insertAdjacentHTML('afterbegin', `<li class="li-task"><span id="taskname" style="margin-right: 220px;">${task}</span><button class="delete" style="background-color: #880808; text-align:right;">Delete</button></li>`);
+                    });
                 }
-                
             }
-            newTaskItem.value = "";
-        }
-       }
+        });
+
     </script>    
 </body>
 </html>
